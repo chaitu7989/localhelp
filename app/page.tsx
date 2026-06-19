@@ -22,29 +22,33 @@ export default function HomePage() {
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img src="/bhimavaram-bg.jpg" alt="" aria-hidden="true"
           className="absolute inset-0 w-full h-full object-cover object-center md:hidden"
-          style={{ filter: "brightness(0.4)" }} />
+          style={{ filter: "brightness(0.65) saturate(1.1)" }} />
+        {/* Gradient: transparent at top (sky shows), dark at bottom (text readable) */}
+        <div className="absolute inset-0 md:hidden bg-gradient-to-b from-black/10 via-black/40 to-black/70" />
 
         <div className="relative flex flex-col md:flex-row" style={{ minHeight: "88vh" }}>
 
           {/* LEFT — transparent on mobile (photo bg shows), white on desktop */}
           <div className="flex-1 flex flex-col justify-center px-6 md:px-14 py-16 md:py-0 z-10 md:bg-white">
-            {/* Badge */}
-            <span className="inline-flex items-center gap-2 bg-white/15 md:bg-orange-50 border border-white/30 md:border-orange-200 text-white md:text-orange-600 text-xs font-semibold px-4 py-1.5 rounded-full mb-6 w-fit">
+            {/* Badge — centered on mobile */}
+            <div className="flex md:block justify-center">
+            <span className="inline-flex items-center gap-2 bg-white/20 md:bg-orange-50 border border-white/40 md:border-orange-200 text-white md:text-orange-600 text-xs font-semibold px-4 py-1.5 rounded-full mb-5">
               🛡️ Trusted Services. Local People. Better Living.
             </span>
+            </div>
 
-            <h1 className="text-4xl md:text-5xl font-extrabold leading-tight mb-4 text-white md:text-gray-900">
+            <h1 className="text-4xl md:text-5xl font-extrabold leading-tight mb-4 text-white md:text-gray-900 text-center md:text-left">
               Find Trusted Service<br />Providers in{" "}
               <span className="text-orange-400 md:text-orange-500">Bhimavaram</span>
             </h1>
 
-            <p className="text-gray-200 md:text-gray-500 text-base mb-8 max-w-md leading-relaxed">
+            <p className="text-gray-200 md:text-gray-500 text-sm md:text-base mb-6 leading-relaxed text-center md:text-left max-w-md mx-auto md:mx-0">
               Plumbers, Electricians, AC Technicians, Carpenters and many more —
               all trusted and verified professionals at your service.
             </p>
 
             {/* Search bar */}
-            <div className="flex gap-2 max-w-md">
+            <div className="flex gap-2 max-w-md mx-auto md:mx-0 w-full">
               <div className="relative flex-1">
                 <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm">🔍</span>
                 <input type="text" placeholder="Search plumber, electrician..."
@@ -56,7 +60,7 @@ export default function HomePage() {
             </div>
 
             {/* Trust badges */}
-            <div className="flex items-start gap-5 mt-8 flex-wrap">
+            <div className="flex items-start justify-center md:justify-start gap-5 mt-6 flex-wrap">
               <div className="flex flex-col items-center text-center gap-1">
                 <div className="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center">
                   <svg className="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" /></svg>
