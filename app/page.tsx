@@ -15,22 +15,30 @@ export default function HomePage() {
       <Navbar />
 
       {/* ── HERO ── */}
-      <section className="relative bg-white overflow-hidden" style={{ minHeight: "88vh" }}>
-        <div className="flex flex-col md:flex-row" style={{ minHeight: "88vh" }}>
+      {/* Mobile: full-screen photo bg with text over it. Desktop: split left-white / right-photo */}
+      <section className="relative overflow-hidden" style={{ minHeight: "88vh" }}>
 
-          {/* LEFT — white background, text content */}
-          <div className="flex-1 flex flex-col justify-center px-8 md:px-14 py-14 md:py-0 z-10">
+        {/* MOBILE ONLY — full background photo */}
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src="/bhimavaram-bg.jpg" alt="" aria-hidden="true"
+          className="absolute inset-0 w-full h-full object-cover object-center md:hidden"
+          style={{ filter: "brightness(0.4)" }} />
+
+        <div className="relative flex flex-col md:flex-row" style={{ minHeight: "88vh" }}>
+
+          {/* LEFT — transparent on mobile (photo bg shows), white on desktop */}
+          <div className="flex-1 flex flex-col justify-center px-6 md:px-14 py-16 md:py-0 z-10 md:bg-white">
             {/* Badge */}
-            <span className="inline-flex items-center gap-2 bg-orange-50 border border-orange-200 text-orange-600 text-xs font-semibold px-4 py-1.5 rounded-full mb-6 w-fit">
+            <span className="inline-flex items-center gap-2 bg-white/15 md:bg-orange-50 border border-white/30 md:border-orange-200 text-white md:text-orange-600 text-xs font-semibold px-4 py-1.5 rounded-full mb-6 w-fit">
               🛡️ Trusted Services. Local People. Better Living.
             </span>
 
-            <h1 className="text-4xl md:text-5xl font-extrabold leading-tight mb-4 text-gray-900">
+            <h1 className="text-4xl md:text-5xl font-extrabold leading-tight mb-4 text-white md:text-gray-900">
               Find Trusted Service<br />Providers in{" "}
-              <span className="text-orange-500">Bhimavaram</span>
+              <span className="text-orange-400 md:text-orange-500">Bhimavaram</span>
             </h1>
 
-            <p className="text-gray-500 text-base mb-8 max-w-md leading-relaxed">
+            <p className="text-gray-200 md:text-gray-500 text-base mb-8 max-w-md leading-relaxed">
               Plumbers, Electricians, AC Technicians, Carpenters and many more —
               all trusted and verified professionals at your service.
             </p>
@@ -39,69 +47,53 @@ export default function HomePage() {
             <div className="flex gap-2 max-w-md">
               <div className="relative flex-1">
                 <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm">🔍</span>
-                <input
-                  type="text"
-                  placeholder="Search plumber, electrician, auto mechanic..."
-                  className="w-full pl-9 pr-4 py-3.5 rounded-xl border border-gray-200 text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-orange-400 text-sm shadow-sm"
-                />
+                <input type="text" placeholder="Search plumber, electrician..."
+                  className="w-full pl-9 pr-4 py-3.5 rounded-xl border border-white/30 md:border-gray-200 bg-white/90 md:bg-white text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-orange-400 text-sm shadow-sm" />
               </div>
-              <button className="bg-orange-500 hover:bg-orange-600 text-white px-6 py-3.5 rounded-xl font-semibold transition whitespace-nowrap text-sm">
+              <button className="bg-orange-500 hover:bg-orange-600 text-white px-5 py-3.5 rounded-xl font-semibold transition whitespace-nowrap text-sm">
                 Search
               </button>
             </div>
 
-            {/* Trust badges — 4 icons with label below */}
-            <div className="flex items-start gap-6 mt-8">
+            {/* Trust badges */}
+            <div className="flex items-start gap-5 mt-8 flex-wrap">
               <div className="flex flex-col items-center text-center gap-1">
                 <div className="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center">
-                  <svg className="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-                  </svg>
+                  <svg className="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" /></svg>
                 </div>
-                <p className="text-xs font-bold text-gray-700">Verified</p>
-                <p className="text-xs text-gray-400">Professionals</p>
+                <p className="text-xs font-bold text-white md:text-gray-700">Verified</p>
+                <p className="text-xs text-gray-300 md:text-gray-400">Professionals</p>
               </div>
               <div className="flex flex-col items-center text-center gap-1">
                 <div className="w-10 h-10 bg-orange-100 rounded-full flex items-center justify-center">
-                  <svg className="w-5 h-5 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z" />
-                  </svg>
+                  <svg className="w-5 h-5 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z" /></svg>
                 </div>
-                <p className="text-xs font-bold text-gray-700">Affordable</p>
-                <p className="text-xs text-gray-400">Pricing</p>
+                <p className="text-xs font-bold text-white md:text-gray-700">Affordable</p>
+                <p className="text-xs text-gray-300 md:text-gray-400">Pricing</p>
               </div>
               <div className="flex flex-col items-center text-center gap-1">
                 <div className="w-10 h-10 bg-yellow-100 rounded-full flex items-center justify-center">
-                  <svg className="w-5 h-5 text-yellow-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-                  </svg>
+                  <svg className="w-5 h-5 text-yellow-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
                 </div>
-                <p className="text-xs font-bold text-gray-700">Quick</p>
-                <p className="text-xs text-gray-400">Response</p>
+                <p className="text-xs font-bold text-white md:text-gray-700">Quick</p>
+                <p className="text-xs text-gray-300 md:text-gray-400">Response</p>
               </div>
               <div className="flex flex-col items-center text-center gap-1">
                 <div className="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center">
-                  <svg className="w-5 h-5 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z" />
-                  </svg>
+                  <svg className="w-5 h-5 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z" /></svg>
                 </div>
-                <p className="text-xs font-bold text-gray-700">Customer</p>
-                <p className="text-xs text-gray-400">Support</p>
+                <p className="text-xs font-bold text-white md:text-gray-700">Customer</p>
+                <p className="text-xs text-gray-300 md:text-gray-400">Support</p>
               </div>
             </div>
           </div>
 
-          {/* RIGHT — Bhimavaram photo + workers */}
-          <div className="relative w-full md:w-[55%] min-h-[420px] md:min-h-full overflow-hidden">
-            {/* Photo — full vibrant brightness, warm sunset */}
+          {/* RIGHT — desktop only photo panel */}
+          <div className="hidden md:block relative w-full md:w-[55%] overflow-hidden">
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src="/bhimavaram-bg.jpg"
-              alt="Bhimavaram — Godavari River, Bridge & Temple"
+            <img src="/bhimavaram-bg.jpg" alt="Bhimavaram — Godavari River, Bridge & Temple"
               className="absolute inset-0 w-full h-full object-cover object-center"
-              style={{ filter: "brightness(1.05) saturate(1.15) contrast(1.05)" }}
-            />
-            {/* Left-edge fade into white left panel */}
+              style={{ filter: "brightness(1.05) saturate(1.15) contrast(1.05)" }} />
             <div className="absolute inset-0 bg-gradient-to-r from-white/55 via-white/5 to-transparent" />
           </div>
 
