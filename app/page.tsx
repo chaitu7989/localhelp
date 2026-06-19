@@ -1,203 +1,619 @@
 import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import { CATEGORIES } from "@/lib/data";
+import AnimatedSection from "@/components/AnimatedSection";
+
+// ─── Static data ─────────────────────────────────────────────────────────────
+
+const FEATURES = [
+  {
+    icon: "🛡️",
+    title: "100% Verified",
+    desc: "Every professional is background-verified and skill-tested before they join LocalHelp.",
+    from: "from-green-50",
+    to: "to-emerald-50",
+    border: "border-green-100",
+    iconBg: "bg-green-100",
+  },
+  {
+    icon: "⚡",
+    title: "Quick Response",
+    desc: "Get a confirmed booking in under 10 minutes. No endless waiting or callbacks needed.",
+    from: "from-amber-50",
+    to: "to-yellow-50",
+    border: "border-amber-100",
+    iconBg: "bg-amber-100",
+  },
+  {
+    icon: "💰",
+    title: "Upfront Pricing",
+    desc: "See the price before you book. Zero hidden charges. Pay only what was quoted.",
+    from: "from-blue-50",
+    to: "to-sky-50",
+    border: "border-blue-100",
+    iconBg: "bg-blue-100",
+  },
+  {
+    icon: "🎧",
+    title: "Always Here",
+    desc: "Dedicated support team available every day. We're just a message away.",
+    from: "from-purple-50",
+    to: "to-violet-50",
+    border: "border-purple-100",
+    iconBg: "bg-purple-100",
+  },
+];
+
+const TESTIMONIALS = [
+  {
+    name: "Ravi Krishna",
+    role: "Homeowner",
+    rating: 5,
+    text: "Found a plumber in under 10 minutes! He arrived on time and fixed our kitchen pipe leak professionally. This is exactly what Bhimavaram needed!",
+    initials: "RK",
+    color: "bg-blue-500",
+    service: "🔧 Plumber",
+  },
+  {
+    name: "Lakshmi Devi",
+    role: "Event Organiser",
+    rating: 5,
+    text: "Booked a caterer for my daughter's engagement ceremony. The food was exceptional and the team so professional. All 200 guests loved it!",
+    initials: "LD",
+    color: "bg-rose-500",
+    service: "🍱 Caterer",
+  },
+  {
+    name: "Venkata Rao",
+    role: "Shop Owner",
+    rating: 5,
+    text: "Had serious electrical issues in my shop. The electrician came the same day, diagnosed everything, and fixed it safely. Great platform!",
+    initials: "VR",
+    color: "bg-amber-500",
+    service: "⚡ Electrician",
+  },
+];
+
+const STATS = [
+  { value: "6+", label: "Service Categories" },
+  { value: "50+", label: "Verified Providers" },
+  { value: "500+", label: "Happy Customers" },
+  { value: "4.9★", label: "Average Rating" },
+];
 
 const HOW_IT_WORKS = [
-  { step: "1", title: "Search Service", desc: "Choose from 6+ categories of local services in Bhimavaram", icon: "🔍" },
-  { step: "2", title: "Book Provider", desc: "Pick a verified provider, choose date & time, describe your problem", icon: "📅" },
-  { step: "3", title: "Pay Safely", desc: "Pay through the app. Money is held safely until job is done", icon: "💳" },
-  { step: "4", title: "Job Done ✅", desc: "Provider arrives, completes the work. Rate and review them", icon: "🏆" },
+  {
+    step: "01",
+    title: "Search",
+    desc: "Choose from 6+ categories of local services in Bhimavaram",
+    icon: "🔍",
+    accent: "from-blue-500 to-blue-700",
+  },
+  {
+    step: "02",
+    title: "Book",
+    desc: "Pick a verified provider, select date & time, describe your problem",
+    icon: "📅",
+    accent: "from-violet-500 to-purple-700",
+  },
+  {
+    step: "03",
+    title: "Pay",
+    desc: "Secure payment held safely until the job is completely done",
+    icon: "💳",
+    accent: "from-amber-500 to-orange-600",
+  },
+  {
+    step: "04",
+    title: "Done!",
+    desc: "Provider completes the work. Rate and review your experience",
+    icon: "🏆",
+    accent: "from-green-500 to-emerald-700",
+  },
 ];
+
+// Gradient per category — same order as CATEGORIES array
+const CAT_GRADIENTS = [
+  "from-blue-500 to-blue-700",       // plumber
+  "from-amber-500 to-orange-600",    // electrician
+  "from-green-500 to-emerald-700",   // auto
+  "from-purple-500 to-violet-700",   // purohit
+  "from-rose-500 to-pink-700",       // caterer
+  "from-indigo-600 to-blue-800",     // photographer
+];
+
+// ─── Page ─────────────────────────────────────────────────────────────────────
 
 export default function HomePage() {
   return (
-    <div className="bg-gray-50 min-h-screen">
+    <div className="min-h-screen bg-white">
       <Navbar />
 
-      {/* ── HERO ── */}
-      {/* Mobile: full-screen photo bg with text over it. Desktop: split left-white / right-photo */}
+      {/* ══ HERO ══════════════════════════════════════════════════════════════ */}
       <section className="relative overflow-hidden" style={{ minHeight: "88vh" }}>
-
-        {/* MOBILE ONLY — full background photo */}
+        {/* Mobile: full-screen photo background */}
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src="/bhimavaram-bg.jpg" alt="" aria-hidden="true"
+        <img
+          src="/bhimavaram-bg.jpg"
+          alt=""
+          aria-hidden="true"
           className="absolute inset-0 w-full h-full object-cover object-center md:hidden"
-          style={{ filter: "brightness(0.65) saturate(1.1)" }} />
-        {/* Gradient: transparent at top (sky shows), dark at bottom (text readable) */}
-        <div className="absolute inset-0 md:hidden bg-gradient-to-b from-black/10 via-black/40 to-black/70" />
+          style={{ filter: "brightness(0.62) saturate(1.1)" }}
+        />
+        <div className="absolute inset-0 md:hidden bg-gradient-to-b from-black/10 via-black/35 to-black/75" />
 
         <div className="relative flex flex-col md:flex-row" style={{ minHeight: "88vh" }}>
-
-          {/* LEFT — transparent on mobile (photo bg shows), white on desktop */}
-          <div className="flex-1 flex flex-col justify-center px-6 md:px-14 py-16 md:py-0 z-10 md:bg-white">
-            {/* Badge — centered on mobile */}
+          {/* LEFT — white bg on desktop, transparent (photo shows) on mobile */}
+          <div className="flex-1 flex flex-col justify-center px-6 md:px-14 lg:px-20 py-16 md:py-0 z-10 md:bg-white">
             <div className="flex md:block justify-center">
-            <span className="inline-flex items-center gap-2 bg-white/20 md:bg-orange-50 border border-white/40 md:border-orange-200 text-white md:text-orange-600 text-xs font-semibold px-4 py-1.5 rounded-full mb-5">
-              🛡️ Trusted Services. Local People. Better Living.
-            </span>
+              <span className="inline-flex items-center gap-2 bg-white/20 md:bg-orange-50 border border-white/40 md:border-orange-200 text-white md:text-orange-600 text-xs font-semibold px-4 py-1.5 rounded-full mb-5 backdrop-blur-sm md:backdrop-blur-none">
+                🛡️ Trusted Services · Local People · Better Living
+              </span>
             </div>
 
-            <h1 className="text-4xl md:text-5xl font-extrabold leading-tight mb-4 text-white md:text-gray-900 text-center md:text-left">
-              Find Trusted Service<br />Providers in{" "}
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-black leading-tight mb-4 text-white md:text-gray-900 text-center md:text-left">
+              Find Trusted Pros<br />
+              in{" "}
               <span className="text-orange-400 md:text-orange-500">Bhimavaram</span>
             </h1>
 
-            <p className="text-gray-200 md:text-gray-500 text-sm md:text-base mb-6 leading-relaxed text-center md:text-left max-w-md mx-auto md:mx-0">
-              Plumbers, Electricians, AC Technicians, Carpenters and many more —
-              all trusted and verified professionals at your service.
+            <p className="text-gray-200 md:text-gray-500 text-sm md:text-base mb-7 leading-relaxed text-center md:text-left max-w-md mx-auto md:mx-0">
+              Plumbers, Electricians, Auto Services, Caterers and more — all
+              verified local professionals, right at your doorstep.
             </p>
 
             {/* Search bar */}
-            <div className="flex gap-2 max-w-md mx-auto md:mx-0 w-full">
+            <div className="flex gap-2 max-w-md mx-auto md:mx-0 w-full mb-4">
               <div className="relative flex-1">
                 <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm">🔍</span>
-                <input type="text" placeholder="Search plumber, electrician..."
-                  className="w-full pl-9 pr-4 py-3.5 rounded-xl border border-white/30 md:border-gray-200 bg-white/90 md:bg-white text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-orange-400 text-sm shadow-sm" />
+                <input
+                  type="text"
+                  placeholder="Search plumber, electrician..."
+                  className="w-full pl-9 pr-4 py-3.5 rounded-2xl border border-white/30 md:border-gray-200 bg-white/90 md:bg-white text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-orange-400 text-sm shadow-md"
+                />
               </div>
-              <button className="bg-orange-500 hover:bg-orange-600 text-white px-5 py-3.5 rounded-xl font-semibold transition whitespace-nowrap text-sm">
+              <button className="bg-orange-500 hover:bg-orange-600 active:bg-orange-700 text-white px-5 py-3.5 rounded-2xl font-bold transition-colors whitespace-nowrap text-sm shadow-md shadow-orange-500/30">
                 Search
               </button>
             </div>
 
+            {/* Quick category pill links below search */}
+            <div className="flex flex-wrap gap-2 max-w-md mx-auto md:mx-0 mb-7">
+              {CATEGORIES.slice(0, 4).map((cat) => (
+                <Link
+                  key={cat.slug}
+                  href={`/category/${cat.slug}`}
+                  className="text-xs bg-white/20 md:bg-gray-100 text-white md:text-gray-600 px-3 py-1.5 rounded-full hover:bg-white/30 md:hover:bg-orange-50 md:hover:text-orange-600 transition-colors"
+                >
+                  {cat.icon} {cat.name}
+                </Link>
+              ))}
+              <Link
+                href="/#services"
+                className="text-xs bg-white/20 md:bg-gray-100 text-white md:text-gray-600 px-3 py-1.5 rounded-full hover:bg-white/30 md:hover:bg-orange-50 md:hover:text-orange-600 transition-colors"
+              >
+                + More
+              </Link>
+            </div>
+
             {/* Trust badges */}
-            <div className="flex items-start justify-center md:justify-start gap-5 mt-6 flex-wrap">
-              <div className="flex flex-col items-center text-center gap-1">
-                <div className="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center">
-                  <svg className="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" /></svg>
+            <div className="flex items-start justify-center md:justify-start gap-5 flex-wrap">
+              {[
+                { emoji: "✅", title: "Verified", sub: "Professionals" },
+                { emoji: "💰", title: "Affordable", sub: "Pricing" },
+                { emoji: "⚡", title: "Quick", sub: "Response" },
+                { emoji: "🎧", title: "24/7", sub: "Support" },
+              ].map((b) => (
+                <div key={b.title} className="flex flex-col items-center gap-1 text-center">
+                  <div className="w-10 h-10 bg-white/20 md:bg-orange-50 rounded-full flex items-center justify-center text-lg">
+                    {b.emoji}
+                  </div>
+                  <p className="text-xs font-bold text-white md:text-gray-700">{b.title}</p>
+                  <p className="text-xs text-gray-300 md:text-gray-400">{b.sub}</p>
                 </div>
-                <p className="text-xs font-bold text-white md:text-gray-700">Verified</p>
-                <p className="text-xs text-gray-300 md:text-gray-400">Professionals</p>
-              </div>
-              <div className="flex flex-col items-center text-center gap-1">
-                <div className="w-10 h-10 bg-orange-100 rounded-full flex items-center justify-center">
-                  <svg className="w-5 h-5 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z" /></svg>
-                </div>
-                <p className="text-xs font-bold text-white md:text-gray-700">Affordable</p>
-                <p className="text-xs text-gray-300 md:text-gray-400">Pricing</p>
-              </div>
-              <div className="flex flex-col items-center text-center gap-1">
-                <div className="w-10 h-10 bg-yellow-100 rounded-full flex items-center justify-center">
-                  <svg className="w-5 h-5 text-yellow-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
-                </div>
-                <p className="text-xs font-bold text-white md:text-gray-700">Quick</p>
-                <p className="text-xs text-gray-300 md:text-gray-400">Response</p>
-              </div>
-              <div className="flex flex-col items-center text-center gap-1">
-                <div className="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center">
-                  <svg className="w-5 h-5 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z" /></svg>
-                </div>
-                <p className="text-xs font-bold text-white md:text-gray-700">Customer</p>
-                <p className="text-xs text-gray-300 md:text-gray-400">Support</p>
-              </div>
+              ))}
             </div>
           </div>
 
           {/* RIGHT — desktop only photo panel */}
           <div className="hidden md:block relative w-full md:w-[55%] overflow-hidden">
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/bhimavaram-bg.jpg" alt="Bhimavaram — Godavari River, Bridge & Temple"
+            <img
+              src="/bhimavaram-bg.jpg"
+              alt="Bhimavaram — Godavari River, Bridge and Temple"
               className="absolute inset-0 w-full h-full object-cover object-center"
-              style={{ filter: "brightness(1.05) saturate(1.15) contrast(1.05)" }} />
-            <div className="absolute inset-0 bg-gradient-to-r from-white/55 via-white/5 to-transparent" />
+              style={{ filter: "brightness(1.05) saturate(1.15) contrast(1.05)" }}
+            />
+            <div className="absolute inset-0 bg-gradient-to-r from-white/60 via-white/10 to-transparent" />
           </div>
-
         </div>
       </section>
 
-      {/* ── SERVICES ── */}
-      <section id="services" className="max-w-6xl mx-auto px-4 py-14">
-        <div className="text-center mb-10">
-          <h2 className="text-3xl font-bold text-gray-900">Popular Services</h2>
-          <p className="text-gray-500 mt-2">సేవలు ఎంచుకోండి · Choose from our top categories</p>
-        </div>
-
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
-          {CATEGORIES.map((cat) => (
-            <Link key={cat.slug} href={`/category/${cat.slug}`}
-              className="bg-white rounded-2xl shadow-sm p-5 flex flex-col items-center text-center hover:shadow-md hover:-translate-y-1 border-2 border-transparent hover:border-orange-400 transition-all duration-200 group">
-              <span className="text-4xl mb-3 group-hover:scale-110 transition-transform">{cat.icon}</span>
-              <p className="font-bold text-gray-800 text-sm">{cat.name}</p>
-              <p className="text-orange-500 text-xs font-medium">{cat.teluguName}</p>
-              <p className="text-gray-400 text-xs mt-1 leading-tight">{cat.description}</p>
-            </Link>
-          ))}
-        </div>
-
-        <div className="text-center mt-8">
-          <Link href="/#services"
-            className="inline-flex items-center gap-2 border-2 border-orange-500 text-orange-500 hover:bg-orange-500 hover:text-white px-6 py-3 rounded-full font-semibold transition">
-            View All Services →
-          </Link>
-        </div>
-      </section>
-
-      {/* ── HOW IT WORKS ── */}
-      <section id="how-it-works" className="bg-white py-14">
-        <div className="max-w-6xl mx-auto px-4">
-          <div className="text-center mb-10">
-            <h2 className="text-3xl font-bold text-gray-900">How It Works</h2>
-            <p className="text-gray-500 mt-2">ఇది ఎలా పని చేస్తుంది · Simple 4-step process</p>
-          </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {HOW_IT_WORKS.map((step, i) => (
-              <div key={step.step} className="relative text-center p-6 rounded-2xl bg-gray-50 border border-gray-100">
-                {i < HOW_IT_WORKS.length - 1 && (
-                  <div className="hidden lg:block absolute top-10 -right-3 text-gray-300 text-2xl z-10">→</div>
-                )}
-                <div className="w-12 h-12 bg-orange-500 text-white rounded-full flex items-center justify-center text-xl font-bold mx-auto mb-4">
-                  {step.step}
-                </div>
-                <p className="text-3xl mb-2">{step.icon}</p>
-                <h3 className="font-bold text-gray-800 mb-2">{step.title}</h3>
-                <p className="text-gray-500 text-sm">{step.desc}</p>
+      {/* ══ STATS STRIP ═══════════════════════════════════════════════════════ */}
+      <div className="bg-orange-500">
+        <div className="max-w-5xl mx-auto px-4 py-5">
+          <div className="grid grid-cols-2 md:grid-cols-4 divide-x divide-orange-400/50">
+            {STATS.map((s) => (
+              <div key={s.label} className="text-center px-4 py-2">
+                <p className="text-3xl md:text-4xl font-black text-white leading-none">{s.value}</p>
+                <p className="text-orange-100 text-xs mt-1.5">{s.label}</p>
               </div>
             ))}
           </div>
         </div>
+      </div>
+
+      {/* ══ SERVICES BENTO GRID ═══════════════════════════════════════════════ */}
+      <section id="services" className="max-w-6xl mx-auto px-4 py-20">
+        <AnimatedSection>
+          <div className="text-center mb-12">
+            <span className="text-orange-500 text-xs font-bold uppercase tracking-widest">Our Services</span>
+            <h2 className="text-3xl md:text-4xl font-black text-gray-900 mt-2">
+              Everything You Need,{" "}
+              <span className="text-orange-500">At Your Door</span>
+            </h2>
+            <p className="text-gray-400 mt-3 text-sm">
+              సేవలు ఎంచుకోండి · 6 categories of trusted local professionals
+            </p>
+          </div>
+        </AnimatedSection>
+
+        <AnimatedSection delay={100}>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            {CATEGORIES.map((cat, i) => {
+              const isLarge = i === 0 || i === 5;
+              const gradient = CAT_GRADIENTS[i];
+              return (
+                <Link
+                  key={cat.slug}
+                  href={`/category/${cat.slug}`}
+                  className={`group relative overflow-hidden rounded-3xl bg-gradient-to-br ${gradient} p-6 md:p-8 flex flex-col justify-between min-h-[160px] md:min-h-[190px] hover:scale-[1.02] hover:shadow-2xl transition-all duration-300 ${
+                    isLarge ? "col-span-1 md:col-span-2" : "col-span-1"
+                  }`}
+                >
+                  <div className="relative z-10">
+                    <span className="text-4xl mb-3 block group-hover:scale-110 transition-transform duration-300">
+                      {cat.icon}
+                    </span>
+                    <h3 className="text-white font-bold text-base md:text-lg leading-tight">
+                      {cat.name}
+                    </h3>
+                    <p className="text-white/70 text-xs mt-0.5">{cat.teluguName}</p>
+                    {isLarge && (
+                      <p className="text-white/60 text-xs mt-2 leading-relaxed hidden md:block">
+                        {cat.description}
+                      </p>
+                    )}
+                  </div>
+                  <div className="relative z-10 mt-4">
+                    <span className="inline-flex items-center gap-1 text-white/90 text-xs font-semibold group-hover:gap-2 transition-all duration-200">
+                      Book Now <span className="group-hover:translate-x-1 transition-transform duration-200">→</span>
+                    </span>
+                  </div>
+                  {/* Decorative circles */}
+                  <div className="absolute -right-8 -bottom-8 w-28 h-28 bg-white/10 rounded-full pointer-events-none" />
+                  <div className="absolute -right-3 -bottom-3 w-16 h-16 bg-white/10 rounded-full pointer-events-none" />
+                </Link>
+              );
+            })}
+          </div>
+        </AnimatedSection>
       </section>
 
-      {/* ── ABOUT ── */}
-      <section id="about" className="max-w-6xl mx-auto px-4 py-14">
-        <div className="bg-gradient-to-r from-orange-500 to-orange-600 rounded-3xl p-8 md:p-12 text-white text-center">
-          <h2 className="text-3xl font-bold mb-3">Built for Bhimavaram 🏙️</h2>
-          <p className="text-orange-100 max-w-2xl mx-auto mb-6">
-            LocalHelp is a hyperlocal service marketplace designed specifically for Bhimavaram
-            and West Godavari. We connect local customers with trusted service providers in their area.
-            భీమవరం మరియు పశ్చిమ గోదావరి కోసం రూపొందించబడిన స్థానిక సేవా వేదిక.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link href="/signup"
-              className="bg-white text-orange-500 font-bold px-8 py-3 rounded-full hover:bg-orange-50 transition">
-              Book a Service
-            </Link>
-            <Link href="/register"
-              className="border-2 border-white text-white font-bold px-8 py-3 rounded-full hover:bg-white hover:text-orange-500 transition">
-              Join as Provider
-            </Link>
-          </div>
+      {/* ══ HOW IT WORKS — dark section with timeline ═════════════════════════ */}
+      <section id="how-it-works" className="bg-gray-950 py-20">
+        <div className="max-w-6xl mx-auto px-4">
+          <AnimatedSection>
+            <div className="text-center mb-16">
+              <span className="text-orange-400 text-xs font-bold uppercase tracking-widest">Simple Process</span>
+              <h2 className="text-3xl md:text-4xl font-black text-white mt-2">
+                How LocalHelp Works
+              </h2>
+              <p className="text-gray-500 mt-3 text-sm">
+                ఇది ఎలా పని చేస్తుంది · Get your service done in 4 simple steps
+              </p>
+            </div>
+          </AnimatedSection>
+
+          <AnimatedSection delay={100}>
+            <div className="relative">
+              {/* Connecting dashed line — desktop only */}
+              <div
+                className="hidden md:block absolute top-12 left-[16%] right-[16%] h-px"
+                style={{
+                  backgroundImage:
+                    "repeating-linear-gradient(to right, #f97316 0, #f97316 8px, transparent 8px, transparent 20px)",
+                  opacity: 0.5,
+                }}
+              />
+
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+                {HOW_IT_WORKS.map((step) => (
+                  <div key={step.step} className="flex flex-col items-center text-center">
+                    <div
+                      className={`relative w-24 h-24 rounded-2xl bg-gradient-to-br ${step.accent} flex items-center justify-center mb-5 shadow-lg z-10`}
+                    >
+                      <span className="text-4xl">{step.icon}</span>
+                      <span className="absolute -top-2 -right-2 w-6 h-6 bg-orange-500 rounded-full text-white text-xs font-black flex items-center justify-center shadow-md">
+                        {parseInt(step.step)}
+                      </span>
+                    </div>
+                    <h3 className="text-white font-bold text-base mb-2">{step.title}</h3>
+                    <p className="text-gray-500 text-xs leading-relaxed">{step.desc}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </AnimatedSection>
         </div>
       </section>
 
-      {/* ── FOOTER ── */}
-      <footer className="bg-[#0f172a] text-gray-400 py-10">
+      {/* ══ WHY LOCALHELP — feature cards ════════════════════════════════════ */}
+      <section className="max-w-6xl mx-auto px-4 py-20">
+        <AnimatedSection>
+          <div className="text-center mb-12">
+            <span className="text-orange-500 text-xs font-bold uppercase tracking-widest">Why Choose Us</span>
+            <h2 className="text-3xl md:text-4xl font-black text-gray-900 mt-2">
+              Why Bhimavaram Trusts{" "}
+              <span className="text-orange-500">LocalHelp</span>
+            </h2>
+            <p className="text-gray-400 mt-3 text-sm">మేము ఎందుకు ప్రత్యేకం · What makes us different</p>
+          </div>
+        </AnimatedSection>
+
+        <AnimatedSection delay={100}>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+            {FEATURES.map((f) => (
+              <div
+                key={f.title}
+                className={`bg-gradient-to-br ${f.from} ${f.to} border ${f.border} rounded-3xl p-6 hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 group`}
+              >
+                <div
+                  className={`w-14 h-14 ${f.iconBg} rounded-2xl flex items-center justify-center text-2xl mb-4 group-hover:scale-110 transition-transform duration-300`}
+                >
+                  {f.icon}
+                </div>
+                <h3 className="font-bold text-gray-900 text-base mb-2">{f.title}</h3>
+                <p className="text-gray-500 text-sm leading-relaxed">{f.desc}</p>
+              </div>
+            ))}
+          </div>
+        </AnimatedSection>
+      </section>
+
+      {/* ══ TESTIMONIALS ══════════════════════════════════════════════════════ */}
+      <section className="bg-gradient-to-b from-orange-50 to-white py-20">
         <div className="max-w-6xl mx-auto px-4">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            <div>
-              <p className="text-white font-bold text-lg">
-                Local<span className="text-orange-500">Help</span>
+          <AnimatedSection>
+            <div className="text-center mb-12">
+              <span className="text-orange-500 text-xs font-bold uppercase tracking-widest">Real Reviews</span>
+              <h2 className="text-3xl md:text-4xl font-black text-gray-900 mt-2">
+                What Bhimavaram Says
+              </h2>
+              <p className="text-gray-400 mt-3 text-sm">
+                మా వినియోగదారుల అభిప్రాయాలు · Real stories from real customers
               </p>
-              <p className="text-sm">భీమవరం · West Godavari · Andhra Pradesh</p>
             </div>
-            <div className="flex gap-6 text-sm">
-              <Link href="/" className="hover:text-orange-400 transition">Home</Link>
-              <Link href="/#services" className="hover:text-orange-400 transition">Services</Link>
-              <Link href="/register" className="hover:text-orange-400 transition">Register</Link>
-              <Link href="/login" className="hover:text-orange-400 transition">Login</Link>
-              <Link href="/admin" className="hover:text-orange-400 transition">Admin</Link>
+          </AnimatedSection>
+
+          <AnimatedSection delay={100}>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              {TESTIMONIALS.map((t) => (
+                <div
+                  key={t.name}
+                  className="bg-white rounded-3xl p-6 shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300 border border-gray-100"
+                >
+                  {/* Star rating */}
+                  <div className="flex gap-0.5 mb-3">
+                    {[1, 2, 3, 4, 5].map((star) => (
+                      <svg key={star} className="w-4 h-4 text-amber-400" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                      </svg>
+                    ))}
+                  </div>
+
+                  <span className="text-xs font-semibold text-orange-500 bg-orange-50 px-2.5 py-1 rounded-full inline-block mb-3">
+                    {t.service}
+                  </span>
+
+                  <p className="text-gray-600 text-sm leading-relaxed mb-5 mt-1">
+                    "{t.text}"
+                  </p>
+
+                  <div className="flex items-center gap-3 pt-4 border-t border-gray-100">
+                    <div
+                      className={`w-10 h-10 ${t.color} rounded-full flex items-center justify-center text-white text-xs font-bold flex-shrink-0`}
+                    >
+                      {t.initials}
+                    </div>
+                    <div>
+                      <p className="font-bold text-gray-800 text-sm">{t.name}</p>
+                      <p className="text-gray-400 text-xs">
+                        {t.role} · Bhimavaram
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </AnimatedSection>
+        </div>
+      </section>
+
+      {/* ══ PROVIDER CTA ══════════════════════════════════════════════════════ */}
+      <section id="about" className="max-w-6xl mx-auto px-4 py-20">
+        <AnimatedSection>
+          <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-orange-500 via-orange-600 to-amber-500">
+            {/* Decorative blobs */}
+            <div className="absolute -top-20 -right-20 w-80 h-80 bg-white/10 rounded-full pointer-events-none" />
+            <div className="absolute -bottom-14 -left-14 w-64 h-64 bg-white/10 rounded-full pointer-events-none" />
+            <div className="absolute top-1/2 right-1/3 w-36 h-36 bg-white/5 rounded-full pointer-events-none" />
+
+            <div className="relative grid md:grid-cols-2 gap-8 p-8 md:p-14 items-center">
+              {/* Left — text */}
+              <div className="text-white">
+                <span className="text-orange-200 text-xs font-bold uppercase tracking-widest block mb-3">
+                  For Professionals
+                </span>
+                <h2 className="text-3xl md:text-4xl font-black mb-4 leading-tight">
+                  Are You a Service<br />Professional?
+                </h2>
+                <p className="text-orange-100 text-sm mb-1">
+                  Join hundreds of providers earning well in Bhimavaram and nearby areas.
+                </p>
+                <p className="text-orange-200/80 text-xs mb-6">
+                  మీరు సేవా నిపుణులా? మాతో చేరండి మరియు ఎక్కువ సంపాదించండి.
+                </p>
+                <ul className="space-y-2.5 text-sm text-orange-100">
+                  {[
+                    "Free registration — no monthly fees ever",
+                    "Customers come directly to your phone",
+                    "You keep 90% of every payment",
+                    "Build your reputation with verified reviews",
+                  ].map((item) => (
+                    <li key={item} className="flex items-start gap-2">
+                      <span className="text-orange-200 mt-0.5">✓</span>
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              {/* Right — CTA buttons */}
+              <div className="flex flex-col gap-4">
+                <Link
+                  href="/register"
+                  className="bg-white text-orange-600 font-black text-center py-4 px-8 rounded-2xl hover:bg-orange-50 transition-colors text-base shadow-2xl shadow-black/20"
+                >
+                  + Register as Provider
+                </Link>
+                <Link
+                  href="/signup"
+                  className="border-2 border-white/60 text-white font-bold text-center py-4 px-8 rounded-2xl hover:bg-white/10 transition-colors text-sm"
+                >
+                  Book a Service Instead →
+                </Link>
+                <p className="text-orange-200/60 text-xs text-center">
+                  Join today · 100% Free · No hidden charges
+                </p>
+              </div>
             </div>
           </div>
-          <div className="border-t border-gray-800 mt-6 pt-6 text-center text-xs">
-            © 2026 LocalHelp · Bhimavaram · Built with ❤️ for West Godavari
+        </AnimatedSection>
+      </section>
+
+      {/* ══ FOOTER ════════════════════════════════════════════════════════════ */}
+      <footer className="bg-gray-950">
+        <div className="max-w-6xl mx-auto px-4 py-16">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-10 pb-12 border-b border-gray-800">
+
+            {/* Brand column */}
+            <div className="col-span-2 md:col-span-1">
+              <p className="text-white font-black text-2xl mb-1">
+                Local<span className="text-orange-500">Help</span>
+              </p>
+              <p className="text-gray-600 text-xs mb-4">భీమవరం · West Godavari · AP</p>
+              <p className="text-gray-400 text-sm leading-relaxed mb-5">
+                Bhimavaram&apos;s trusted hyperlocal service marketplace. Connecting people
+                with skilled local professionals since 2025.
+              </p>
+              {/* Social icons */}
+              <div className="flex gap-3">
+                <a
+                  href="#"
+                  className="w-9 h-9 bg-green-500/20 text-green-400 rounded-xl flex items-center justify-center text-sm hover:bg-green-500/30 transition-colors"
+                  aria-label="WhatsApp"
+                >
+                  📱
+                </a>
+                <a
+                  href="#"
+                  className="w-9 h-9 bg-pink-500/20 text-pink-400 rounded-xl flex items-center justify-center text-sm hover:bg-pink-500/30 transition-colors"
+                  aria-label="Instagram"
+                >
+                  📸
+                </a>
+                <a
+                  href="#"
+                  className="w-9 h-9 bg-blue-500/20 text-blue-400 rounded-xl flex items-center justify-center text-sm hover:bg-blue-500/30 transition-colors"
+                  aria-label="Facebook"
+                >
+                  📘
+                </a>
+              </div>
+            </div>
+
+            {/* Services column */}
+            <div>
+              <p className="text-white font-bold text-sm mb-5">Services</p>
+              <ul className="space-y-3">
+                {CATEGORIES.map((cat) => (
+                  <li key={cat.slug}>
+                    <Link
+                      href={`/category/${cat.slug}`}
+                      className="text-gray-400 text-sm hover:text-orange-400 transition-colors flex items-center gap-2"
+                    >
+                      <span>{cat.icon}</span>
+                      <span>{cat.name}</span>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Company column */}
+            <div>
+              <p className="text-white font-bold text-sm mb-5">Company</p>
+              <ul className="space-y-3 text-sm">
+                {[
+                  { label: "Home", href: "/" },
+                  { label: "How It Works", href: "/#how-it-works" },
+                  { label: "Join as Provider", href: "/register" },
+                  { label: "Login", href: "/login" },
+                  { label: "Sign Up", href: "/signup" },
+                  { label: "Admin Panel", href: "/admin" },
+                ].map((link) => (
+                  <li key={link.label}>
+                    <Link href={link.href} className="text-gray-400 hover:text-orange-400 transition-colors">
+                      {link.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Contact column */}
+            <div>
+              <p className="text-white font-bold text-sm mb-5">Contact</p>
+              <ul className="space-y-4">
+                <li className="flex items-start gap-3 text-sm text-gray-400">
+                  <span className="mt-0.5 flex-shrink-0">📍</span>
+                  <span>Bhimavaram, West Godavari, Andhra Pradesh — 534 201</span>
+                </li>
+                <li className="flex items-center gap-3 text-sm text-gray-400">
+                  <span>📧</span>
+                  <span>support@localhelp.in</span>
+                </li>
+                <li className="flex items-center gap-3 text-sm text-gray-400">
+                  <span>📞</span>
+                  <span>+91 98765 43210</span>
+                </li>
+                <li className="flex items-center gap-3 text-sm text-gray-400">
+                  <span>🕐</span>
+                  <span>Mon–Sat: 8 AM – 8 PM</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          {/* Bottom bar */}
+          <div className="flex flex-col md:flex-row justify-between items-center gap-3 pt-8 text-xs text-gray-600">
+            <p>© 2025 LocalHelp · Bhimavaram · Built with ❤️ for West Godavari</p>
+            <div className="flex gap-5">
+              <Link href="/" className="hover:text-orange-400 transition-colors">Privacy Policy</Link>
+              <Link href="/" className="hover:text-orange-400 transition-colors">Terms of Service</Link>
+              <Link href="/" className="hover:text-orange-400 transition-colors">Refund Policy</Link>
+            </div>
           </div>
         </div>
       </footer>
