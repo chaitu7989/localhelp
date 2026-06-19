@@ -2,13 +2,6 @@ import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import { CATEGORIES } from "@/lib/data";
 
-const TRUST_BADGES = [
-  { icon: "✅", label: "Verified Professionals", sub: "నిర్థారించబడిన నిపుణులు" },
-  { icon: "💰", label: "Affordable Pricing", sub: "సాధ్యమైన ధరలు" },
-  { icon: "⚡", label: "Quick Response", sub: "వేగవంతమైన సేవ" },
-  { icon: "🎧", label: "Customer Support", sub: "24/7 సహాయం" },
-];
-
 const HOW_IT_WORKS = [
   { step: "1", title: "Search Service", desc: "Choose from 6+ categories of local services in Bhimavaram", icon: "🔍" },
   { step: "2", title: "Book Provider", desc: "Pick a verified provider, choose date & time, describe your problem", icon: "📅" },
@@ -22,68 +15,96 @@ export default function HomePage() {
       <Navbar />
 
       {/* ── HERO ── */}
-      <section className="relative bg-gradient-to-br from-[#0f172a] via-[#1e293b] to-[#0f172a] text-white overflow-hidden">
-        {/* Orange glow blob */}
-        <div className="absolute top-0 right-0 w-96 h-96 bg-orange-500 opacity-10 rounded-full blur-3xl -translate-y-20 translate-x-20" />
-        <div className="absolute bottom-0 left-0 w-64 h-64 bg-orange-400 opacity-10 rounded-full blur-3xl translate-y-10 -translate-x-10" />
+      <section className="relative bg-white overflow-hidden" style={{ minHeight: "88vh" }}>
+        <div className="flex flex-col md:flex-row" style={{ minHeight: "88vh" }}>
 
-        <div className="relative max-w-6xl mx-auto px-4 py-16 md:py-24 flex flex-col md:flex-row items-center gap-10">
-          {/* Left content */}
-          <div className="flex-1 text-center md:text-left">
-            <span className="inline-flex items-center gap-2 bg-orange-500/20 border border-orange-500/30 text-orange-400 text-xs font-semibold px-4 py-1.5 rounded-full mb-6">
-              ✅ Trusted Services. Local People. Better Living.
+          {/* LEFT — white background, text content */}
+          <div className="flex-1 flex flex-col justify-center px-8 md:px-14 py-14 md:py-0 z-10">
+            {/* Badge */}
+            <span className="inline-flex items-center gap-2 bg-orange-50 border border-orange-200 text-orange-600 text-xs font-semibold px-4 py-1.5 rounded-full mb-6 w-fit">
+              🛡️ Trusted Services. Local People. Better Living.
             </span>
-            <h1 className="text-4xl md:text-5xl font-bold leading-tight mb-4">
+
+            <h1 className="text-4xl md:text-5xl font-extrabold leading-tight mb-4 text-gray-900">
               Find Trusted Service<br />Providers in{" "}
               <span className="text-orange-500">Bhimavaram</span>
             </h1>
-            <p className="text-gray-300 text-base mb-8 max-w-lg">
-              Plumbers, Electricians, AC Technicians, Auto drivers and many more —
+
+            <p className="text-gray-500 text-base mb-8 max-w-md leading-relaxed">
+              Plumbers, Electricians, AC Technicians, Carpenters and many more —
               all trusted and verified professionals at your service.
-              <span className="block text-sm text-gray-400 mt-1">భీమవరంలో నమ్మకమైన సేవా నిపుణులు</span>
             </p>
 
             {/* Search bar */}
-            <div className="flex gap-2 max-w-lg mx-auto md:mx-0">
-              <input
-                type="text"
-                placeholder="Search plumber, electrician, auto mechanic..."
-                className="flex-1 px-4 py-3.5 rounded-xl bg-white text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-orange-400 text-sm shadow-lg"
-              />
-              <button className="bg-orange-500 hover:bg-orange-600 text-white px-6 py-3.5 rounded-xl font-semibold transition shadow-lg whitespace-nowrap">
+            <div className="flex gap-2 max-w-md">
+              <div className="relative flex-1">
+                <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm">🔍</span>
+                <input
+                  type="text"
+                  placeholder="Search plumber, electrician, auto mechanic..."
+                  className="w-full pl-9 pr-4 py-3.5 rounded-xl border border-gray-200 text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-orange-400 text-sm shadow-sm"
+                />
+              </div>
+              <button className="bg-orange-500 hover:bg-orange-600 text-white px-6 py-3.5 rounded-xl font-semibold transition whitespace-nowrap text-sm">
                 Search
               </button>
             </div>
 
-            {/* Trust badges */}
-            <div className="flex flex-wrap justify-center md:justify-start gap-4 mt-8">
-              {TRUST_BADGES.map((b) => (
-                <div key={b.label} className="flex items-center gap-2">
-                  <span className="text-lg">{b.icon}</span>
-                  <div>
-                    <p className="text-xs font-semibold text-white">{b.label}</p>
-                    <p className="text-xs text-gray-400">{b.sub}</p>
-                  </div>
+            {/* Trust badges — 4 icons with label below */}
+            <div className="flex items-start gap-6 mt-8">
+              <div className="flex flex-col items-center text-center gap-1">
+                <div className="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center">
+                  <svg className="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                  </svg>
                 </div>
-              ))}
+                <p className="text-xs font-bold text-gray-700">Verified</p>
+                <p className="text-xs text-gray-400">Professionals</p>
+              </div>
+              <div className="flex flex-col items-center text-center gap-1">
+                <div className="w-10 h-10 bg-orange-100 rounded-full flex items-center justify-center">
+                  <svg className="w-5 h-5 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z" />
+                  </svg>
+                </div>
+                <p className="text-xs font-bold text-gray-700">Affordable</p>
+                <p className="text-xs text-gray-400">Pricing</p>
+              </div>
+              <div className="flex flex-col items-center text-center gap-1">
+                <div className="w-10 h-10 bg-yellow-100 rounded-full flex items-center justify-center">
+                  <svg className="w-5 h-5 text-yellow-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                  </svg>
+                </div>
+                <p className="text-xs font-bold text-gray-700">Quick</p>
+                <p className="text-xs text-gray-400">Response</p>
+              </div>
+              <div className="flex flex-col items-center text-center gap-1">
+                <div className="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center">
+                  <svg className="w-5 h-5 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z" />
+                  </svg>
+                </div>
+                <p className="text-xs font-bold text-gray-700">Customer</p>
+                <p className="text-xs text-gray-400">Support</p>
+              </div>
             </div>
           </div>
 
-          {/* Right: Stats card */}
-          <div className="flex-shrink-0 grid grid-cols-2 gap-4 w-full md:w-72">
-            {[
-              { value: "500+", label: "Happy Customers", sub: "సంతుష్ట కస్టమర్లు" },
-              { value: "50+", label: "Verified Providers", sub: "నిర్థారించబడిన నిపుణులు" },
-              { value: "6+", label: "Service Categories", sub: "సేవా వర్గాలు" },
-              { value: "4.8★", label: "Average Rating", sub: "సగటు రేటింగ్" },
-            ].map((s) => (
-              <div key={s.label} className="bg-white/10 backdrop-blur border border-white/10 rounded-2xl p-4 text-center">
-                <p className="text-2xl font-bold text-orange-400">{s.value}</p>
-                <p className="text-xs text-white font-medium mt-1">{s.label}</p>
-                <p className="text-xs text-gray-400">{s.sub}</p>
-              </div>
-            ))}
+          {/* RIGHT — Bhimavaram photo + workers */}
+          <div className="relative w-full md:w-[55%] min-h-[420px] md:min-h-full overflow-hidden">
+            {/* Photo — full vibrant brightness, warm sunset */}
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/bhimavaram-bg.jpg"
+              alt="Bhimavaram — Godavari River, Bridge & Temple"
+              className="absolute inset-0 w-full h-full object-cover object-center"
+              style={{ filter: "brightness(1.05) saturate(1.15) contrast(1.05)" }}
+            />
+            {/* Left-edge fade into white left panel */}
+            <div className="absolute inset-0 bg-gradient-to-r from-white/55 via-white/5 to-transparent" />
           </div>
+
         </div>
       </section>
 
