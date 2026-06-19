@@ -141,7 +141,7 @@ export default function MyBookingsPage() {
                     </a>
                   )}
                   {b.status === "accepted" || b.status === "on_the_way" ? (
-                    <Link href={`/track/${b.id}`}
+                    <Link href={`/track?booking=${b.id}`}
                       className="flex-1 bg-blue-500 text-white text-center py-2.5 rounded-xl text-sm font-semibold hover:bg-blue-600 transition">
                       🗺️ Track Live
                     </Link>

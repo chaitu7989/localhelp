@@ -64,7 +64,7 @@ export default async function ProviderPage({ params }: { params: Promise<{ id: s
 
         {/* Book Now — Primary Action */}
         <Link
-          href={`/booking/${provider.id}`}
+          href={`/booking?provider=${provider.id}`}
           className="block w-full bg-orange-500 text-white text-center py-4 rounded-2xl font-bold text-xl hover:bg-orange-600 transition shadow-lg"
         >
           📅 Book Now · ఇప్పుడు బుక్ చేయండి
