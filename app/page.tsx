@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Navbar from "@/components/Navbar";
+import Logo from "@/components/Logo";
 import { CATEGORIES } from "@/lib/data";
 
 export default function HomePage() {
@@ -9,6 +10,9 @@ export default function HomePage() {
 
       {/* Hero */}
       <div className="bg-orange-500 text-white text-center py-10 px-4">
+        <div className="flex justify-center mb-3">
+          <Logo size={80} />
+        </div>
         <h1 className="text-3xl font-bold mb-1">LocalHelp</h1>
         <p className="text-orange-100 text-sm mb-1">భీమవరం స్థానిక సేవలు</p>
         <p className="text-lg mt-2">Find trusted service providers in Bhimavaram</p>
