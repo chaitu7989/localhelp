@@ -2,6 +2,8 @@ import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import { CATEGORIES } from "@/lib/data";
 import AnimatedSection from "@/components/AnimatedSection";
+import FloatingBookBtn from "@/components/FloatingBookBtn";
+import FooterAccordion from "@/components/FooterAccordion";
 
 // ─── Static data ─────────────────────────────────────────────────────────────
 
@@ -44,41 +46,11 @@ const FEATURES = [
   },
 ];
 
-const TESTIMONIALS = [
-  {
-    name: "Ravi Krishna",
-    role: "Homeowner",
-    rating: 5,
-    text: "Found a plumber in under 10 minutes! He arrived on time and fixed our kitchen pipe leak professionally. This is exactly what Bhimavaram needed!",
-    initials: "RK",
-    color: "bg-blue-500",
-    service: "🔧 Plumber",
-  },
-  {
-    name: "Lakshmi Devi",
-    role: "Event Organiser",
-    rating: 5,
-    text: "Booked a caterer for my daughter's engagement ceremony. The food was exceptional and the team so professional. All 200 guests loved it!",
-    initials: "LD",
-    color: "bg-rose-500",
-    service: "🍱 Caterer",
-  },
-  {
-    name: "Venkata Rao",
-    role: "Shop Owner",
-    rating: 5,
-    text: "Had serious electrical issues in my shop. The electrician came the same day, diagnosed everything, and fixed it safely. Great platform!",
-    initials: "VR",
-    color: "bg-amber-500",
-    service: "⚡ Electrician",
-  },
-];
-
 const STATS = [
   { value: "6+", label: "Service Categories" },
-  { value: "50+", label: "Verified Providers" },
-  { value: "500+", label: "Happy Customers" },
-  { value: "4.9★", label: "Average Rating" },
+  { value: "100%", label: "Verified Providers" },
+  { value: "Same Day", label: "Quick Booking" },
+  { value: "Zero", label: "Hidden Charges" },
 ];
 
 const HOW_IT_WORKS = [
@@ -151,8 +123,9 @@ export default function HomePage() {
               </span>
             </div>
 
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-black leading-tight mb-4 text-white md:text-gray-900 text-center md:text-left">
-              Find Trusted Pros<br />
+            <h1 className="text-3xl md:text-5xl lg:text-6xl font-black leading-tight mb-4 text-white md:text-gray-900 text-center md:text-left">
+              Find Trusted<br />
+              Service Providers<br />
               in{" "}
               <span className="text-orange-400 md:text-orange-500">Bhimavaram</span>
             </h1>
@@ -235,7 +208,7 @@ export default function HomePage() {
           <div className="grid grid-cols-2 md:grid-cols-4 divide-x divide-orange-400/50">
             {STATS.map((s) => (
               <div key={s.label} className="text-center px-4 py-2">
-                <p className="text-3xl md:text-4xl font-black text-white leading-none">{s.value}</p>
+                <p className="text-2xl md:text-4xl font-black text-white leading-none">{s.value}</p>
                 <p className="text-orange-100 text-xs mt-1.5">{s.label}</p>
               </div>
             ))}
@@ -381,65 +354,6 @@ export default function HomePage() {
         </AnimatedSection>
       </section>
 
-      {/* ══ TESTIMONIALS ══════════════════════════════════════════════════════ */}
-      <section className="bg-gradient-to-b from-orange-50 to-white py-20">
-        <div className="max-w-6xl mx-auto px-4">
-          <AnimatedSection>
-            <div className="text-center mb-12">
-              <span className="text-orange-500 text-xs font-bold uppercase tracking-widest">Real Reviews</span>
-              <h2 className="text-3xl md:text-4xl font-black text-gray-900 mt-2">
-                What Bhimavaram Says
-              </h2>
-              <p className="text-gray-400 mt-3 text-sm">
-                మా వినియోగదారుల అభిప్రాయాలు · Real stories from real customers
-              </p>
-            </div>
-          </AnimatedSection>
-
-          <AnimatedSection delay={100}>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {TESTIMONIALS.map((t) => (
-                <div
-                  key={t.name}
-                  className="bg-white rounded-3xl p-6 shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300 border border-gray-100"
-                >
-                  {/* Star rating */}
-                  <div className="flex gap-0.5 mb-3">
-                    {[1, 2, 3, 4, 5].map((star) => (
-                      <svg key={star} className="w-4 h-4 text-amber-400" fill="currentColor" viewBox="0 0 20 20">
-                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                      </svg>
-                    ))}
-                  </div>
-
-                  <span className="text-xs font-semibold text-orange-500 bg-orange-50 px-2.5 py-1 rounded-full inline-block mb-3">
-                    {t.service}
-                  </span>
-
-                  <p className="text-gray-600 text-sm leading-relaxed mb-5 mt-1">
-                    "{t.text}"
-                  </p>
-
-                  <div className="flex items-center gap-3 pt-4 border-t border-gray-100">
-                    <div
-                      className={`w-10 h-10 ${t.color} rounded-full flex items-center justify-center text-white text-xs font-bold flex-shrink-0`}
-                    >
-                      {t.initials}
-                    </div>
-                    <div>
-                      <p className="font-bold text-gray-800 text-sm">{t.name}</p>
-                      <p className="text-gray-400 text-xs">
-                        {t.role} · Bhimavaram
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </AnimatedSection>
-        </div>
-      </section>
-
       {/* ══ PROVIDER CTA ══════════════════════════════════════════════════════ */}
       <section id="about" className="max-w-6xl mx-auto px-4 py-20">
         <AnimatedSection>
@@ -502,6 +416,9 @@ export default function HomePage() {
         </AnimatedSection>
       </section>
 
+      {/* Floating book button — appears on scroll */}
+      <FloatingBookBtn />
+
       {/* ══ FOOTER ════════════════════════════════════════════════════════════ */}
       <footer className="bg-gray-950">
         <div className="max-w-6xl mx-auto px-4 py-16">
@@ -515,7 +432,7 @@ export default function HomePage() {
               <p className="text-gray-600 text-xs mb-4">భీమవరం · West Godavari · AP</p>
               <p className="text-gray-400 text-sm leading-relaxed mb-5">
                 Bhimavaram&apos;s trusted hyperlocal service marketplace. Connecting people
-                with skilled local professionals since 2025.
+                with skilled local professionals since 2026.
               </p>
               {/* Social icons */}
               <div className="flex gap-3">
@@ -543,47 +460,31 @@ export default function HomePage() {
               </div>
             </div>
 
-            {/* Services column */}
-            <div>
-              <p className="text-white font-bold text-sm mb-5">Services</p>
-              <ul className="space-y-3">
-                {CATEGORIES.map((cat) => (
-                  <li key={cat.slug}>
-                    <Link
-                      href={`/category/${cat.slug}`}
-                      className="text-gray-400 text-sm hover:text-orange-400 transition-colors flex items-center gap-2"
-                    >
-                      <span>{cat.icon}</span>
-                      <span>{cat.name}</span>
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
+            {/* Services column — accordion */}
+            <FooterAccordion
+              title="Services"
+              links={CATEGORIES.map((cat) => ({
+                label: cat.name,
+                href: `/category/${cat.slug}`,
+                icon: cat.icon,
+              }))}
+            />
 
-            {/* Company column */}
-            <div>
-              <p className="text-white font-bold text-sm mb-5">Company</p>
-              <ul className="space-y-3 text-sm">
-                {[
-                  { label: "Home", href: "/" },
-                  { label: "How It Works", href: "/#how-it-works" },
-                  { label: "Join as Provider", href: "/register" },
-                  { label: "Login", href: "/login" },
-                  { label: "Sign Up", href: "/signup" },
-                  { label: "Admin Panel", href: "/admin" },
-                ].map((link) => (
-                  <li key={link.label}>
-                    <Link href={link.href} className="text-gray-400 hover:text-orange-400 transition-colors">
-                      {link.label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
+            {/* Company column — accordion */}
+            <FooterAccordion
+              title="Company"
+              links={[
+                { label: "Home", href: "/" },
+                { label: "How It Works", href: "/#how-it-works" },
+                { label: "Join as Provider", href: "/register" },
+                { label: "Login", href: "/login" },
+                { label: "Sign Up", href: "/signup" },
+                { label: "Admin Panel", href: "/admin" },
+              ]}
+            />
 
             {/* Contact column */}
-            <div>
+            <div className="col-span-2 md:col-span-1">
               <p className="text-white font-bold text-sm mb-5">Contact</p>
               <ul className="space-y-4">
                 <li className="flex items-start gap-3 text-sm text-gray-400">
@@ -608,7 +509,7 @@ export default function HomePage() {
 
           {/* Bottom bar */}
           <div className="flex flex-col md:flex-row justify-between items-center gap-3 pt-8 text-xs text-gray-600">
-            <p>© 2025 LocalHelp · Bhimavaram · Built with ❤️ for West Godavari</p>
+            <p>© 2026 LocalHelp · Bhimavaram · Built with ❤️ for West Godavari</p>
             <div className="flex gap-5">
               <Link href="/" className="hover:text-orange-400 transition-colors">Privacy Policy</Link>
               <Link href="/" className="hover:text-orange-400 transition-colors">Terms of Service</Link>
