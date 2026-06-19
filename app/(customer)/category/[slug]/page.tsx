@@ -3,6 +3,10 @@ import Navbar from "@/components/Navbar";
 import { CATEGORIES, PROVIDERS } from "@/lib/data";
 import { notFound } from "next/navigation";
 
+export function generateStaticParams() {
+  return CATEGORIES.map((c) => ({ slug: c.slug }));
+}
+
 export default async function CategoryPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const category = CATEGORIES.find((c) => c.slug === slug);

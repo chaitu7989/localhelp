@@ -3,6 +3,10 @@ import Navbar from "@/components/Navbar";
 import { PROVIDERS, CATEGORIES } from "@/lib/data";
 import { notFound } from "next/navigation";
 
+export function generateStaticParams() {
+  return PROVIDERS.map((p) => ({ id: p.id }));
+}
+
 export default async function ProviderPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
   const provider = PROVIDERS.find((p) => p.id === id);
