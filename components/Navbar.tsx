@@ -42,6 +42,9 @@ export default function Navbar() {
           {user ? (
             <>
               <span className="text-sm text-gray-500">Hi, {profile?.name?.split(" ")[0]}</span>
+              {profile?.role === "customer" && (
+                <Link href="/bookings" className="text-sm text-orange-500 font-semibold hover:underline">My Bookings</Link>
+              )}
               {profile?.role === "admin" && (
                 <Link href="/admin" className="text-sm text-orange-500 font-semibold hover:underline">Admin</Link>
               )}

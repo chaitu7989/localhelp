@@ -62,28 +62,31 @@ export default async function ProviderPage({ params }: { params: Promise<{ id: s
           <p className="text-gray-700 text-sm">{provider.description}</p>
         </div>
 
+        {/* Book Now — Primary Action */}
+        <Link
+          href={`/booking/${provider.id}`}
+          className="block w-full bg-orange-500 text-white text-center py-4 rounded-2xl font-bold text-xl hover:bg-orange-600 transition shadow-lg"
+        >
+          📅 Book Now · ఇప్పుడు బుక్ చేయండి
+        </Link>
+
         {/* Contact Actions */}
         <div className="bg-white rounded-2xl shadow p-4 space-y-3">
           <p className="text-sm font-semibold text-gray-600">Contact / సంప్రదించండి</p>
           <a
             href={`tel:${provider.phone}`}
-            className="block w-full bg-orange-500 text-white text-center py-3 rounded-xl font-semibold text-lg hover:bg-orange-600 transition"
+            className="block w-full bg-gray-100 text-gray-800 text-center py-3 rounded-xl font-semibold hover:bg-gray-200 transition"
           >
-            📞 Call Now · {provider.phone}
+            📞 Call · {provider.phone}
           </a>
           <a
             href={`https://wa.me/91${provider.phone}?text=Hello, I found you on LocalHelp. I need ${category?.name} service.`}
             target="_blank"
             rel="noopener noreferrer"
-            className="block w-full bg-green-500 text-white text-center py-3 rounded-xl font-semibold text-lg hover:bg-green-600 transition"
+            className="block w-full bg-green-500 text-white text-center py-3 rounded-xl font-semibold hover:bg-green-600 transition"
           >
             💬 WhatsApp
           </a>
-          {provider.upiId && (
-            <div className="text-center text-sm text-gray-500">
-              💰 UPI: <span className="font-medium text-gray-700">{provider.upiId}</span>
-            </div>
-          )}
         </div>
 
         <Link href={`/category/${provider.category}`} className="block text-center text-orange-500 underline text-sm pb-8">
