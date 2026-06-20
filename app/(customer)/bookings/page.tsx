@@ -90,12 +90,49 @@ export default function MyBookingsPage() {
                 <div className="flex justify-between items-start mb-3">
                   <div>
                     <p className="font-bold text-gray-800">{cat?.icon} {cat?.name}</p>
-                    <p className="text-sm text-gray-500">Provider: {providerName}</p>
                   </div>
                   <span className={`text-xs px-3 py-1 rounded-full font-semibold ${status.color}`}>
                     {status.icon} {status.label}
                   </span>
                 </div>
+
+                {/* ── Swiggy-style provider assignment card ── */}
+                {b.status === "pending" && (
+                  <div className="bg-amber-50 border border-amber-100 rounded-2xl p-4 mb-3 flex items-center gap-3">
+                    <div className="w-8 h-8 border-4 border-orange-400 border-t-transparent rounded-full animate-spin shrink-0" />
+                    <div>
+                      <p className="text-sm font-bold text-gray-800">Finding your service provider...</p>
+                      <p className="text-xs text-gray-500">We&apos;re connecting you with a nearby professional</p>
+                    </div>
+                  </div>
+                )}
+
+                {b.status !== "pending" && b.status !== "cancelled" && (
+                  <div className="bg-green-50 border border-green-100 rounded-2xl p-4 mb-3">
+                    <p className="text-xs text-green-600 font-bold uppercase tracking-wide mb-2">
+                      ✅ Provider Assigned
+                    </p>
+                    <div className="flex items-center gap-3">
+                      <div className="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center text-xl font-bold text-orange-500 shrink-0">
+                        {providerName[0]}
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <p className="font-bold text-gray-800">{providerName}</p>
+                        <p className="text-xs text-gray-500">
+                          ⭐ {b.providers?.rating > 0 ? b.providers.rating : "New"} · {b.providers?.experience}
+                        </p>
+                        {providerPhone && (
+                          <a href={`tel:${providerPhone}`} className="text-xs text-orange-500 font-semibold">
+                            📞 {providerPhone}
+                          </a>
+                        )}
+                      </div>
+                      <span className={`text-xs px-2 py-1 rounded-full font-semibold shrink-0 ${status.color}`}>
+                        {status.icon}
+                      </span>
+                    </div>
+                  </div>
+                )}
 
                 {/* Progress bar */}
                 <div className="mb-4">
