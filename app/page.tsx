@@ -223,7 +223,7 @@ export default function HomePage() {
             <span className="text-orange-500 text-xs font-bold uppercase tracking-widest">Our Services</span>
             <h2 className="text-3xl md:text-4xl font-black text-gray-900 mt-2">
               Everything You Need,{" "}
-              <span className="text-orange-500">At Your Door</span>
+              <span className="text-orange-500">At Your Doorstep</span>
             </h2>
             <p className="text-gray-400 mt-3 text-sm">
               సేవలు ఎంచుకోండి · 6 categories of trusted local professionals
